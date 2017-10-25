@@ -1,0 +1,60 @@
+#!/bin/sh
+
+if (( $# != 0 && $# != 1 ));then
+  cat <<HELP
+$0
+  create direnv file and basic directories.
+  ./
+    .envrc
+    bin/
+    src/
+
+$0 respository_path
+  create direnv file ,basic directories and package directory based on path
+  ex) $0 github.com/kuwa72/excellentlib
+  ./
+    .envrc
+    bin/
+    src/
+      github.com/kuwa72/excellentlib
+        .git
+        excellentlib.go
+HELP
+
+  exit 1
+fi
+
+cat <<ENVRC > .envrc
+export GOPATH=\$(pwd)
+export PATH=\$GOPATH/bin:\$PATH
+ENVRC
+
+mkdir -p bin src
+
+if (( $# == 1 ));then
+  cd src
+
+
+  if mkdir -p "$1";then
+    :
+  else
+    echo "Felt make directories"
+    exit 1
+  fi
+
+  cd $1
+
+  git init .
+
+  libname=$(basename $1)
+
+  cat <<GOLANG > ${libname}.go
+package main
+
+import "fmt"
+
+func main() {
+		fmt.Printf("Hello, world.\n")
+}
+GOLANG
+fi
