@@ -14,3 +14,11 @@ If run gofromhere with repository url (like `gofromhere github.com/you/libname`)
 Beware, this script is not check arguments. If you use unsecure strings for arguments, this script brake your system.
 
 Please check [example directory](tree/master/example).
+
+## usage
+
+```
+$ mkdir projectdir
+$ cd projectdir
+$ gofromhere github.com/you/libname
+```
