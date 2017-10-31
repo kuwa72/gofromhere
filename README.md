@@ -21,4 +21,5 @@ Please check [example directory](https://github.com/kuwa72/gofromhere/tree/maste
 $ mkdir projectdir
 $ cd projectdir
 $ gofromhere github.com/you/libname
+$ direnv allow
 ```
